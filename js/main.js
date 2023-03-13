@@ -114,19 +114,56 @@ const arrayIcons = [
 ];
 
 
-
-
 let containerDOM = document.getElementById("container");
+const selectDom = document.getElementById("display_type");
 
-for(let i = 0; i < arrayIcons.length; i++){
-	let innerContainerDom = document.createElement("div");
-	innerContainerDom.innerHTML = `
-	<i class="fa-solid fa-${arrayIcons[i].name} "style="color:${arrayIcons[i].color}"></i>
-	<h3>${arrayIcons[i].name}</h3>
-	`;
-	containerDOM.appendChild(innerContainerDom);
-	innerContainerDom.classList.add("box");
+let animal = arrayIcons.filter(kind =>{ 
+	return (kind.type == "animal") ? true : false });
 
-};
+
+const veggy = arrayIcons.filter(kind =>{
+	return (kind.type == "vegetable") ? true : false });
+
+
+
+const user = arrayIcons.filter(kind =>{
+	return (kind.type == "user") ? true : false });
+
+
+generateBox(arrayIcons);
+
+
+selectDom.addEventListener("change",
+function(){
+	
+	if(selectDom.value == "all"){
+		generateBox(arrayIcons)
+	}
+	if (selectDom.value == "vegetable"){
+		generateBox(veggy)
+	}
+	if (selectDom.value == "animal"){
+		generateBox(animal)
+	}
+	if (selectDom.value == "user"){
+		generateBox(user)
+	}
+
+});
+
+
+function generateBox (array){
+	containerDOM.innerHTML = "";
+	array.forEach((kind) =>{
+		containerDOM.innerHTML +=`<div class="box">
+		<i class="fa-solid fa-${kind.name} "style="color:${kind.color}"></i>
+		<h3>${kind.name}</h3></div>
+		`;
+		
+	});
+
+}
+
+
 
 
