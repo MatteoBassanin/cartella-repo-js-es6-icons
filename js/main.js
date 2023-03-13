@@ -121,7 +121,7 @@ let containerDOM = document.getElementById("container");
 for(let i = 0; i < arrayIcons.length; i++){
 	let innerContainerDom = document.createElement("div");
 	innerContainerDom.innerHTML = `
-	<i class="fa-solid fa-${arrayIcons[i].name}"></i>
+	<i class="fa-solid fa-${arrayIcons[i].name} "style="color:${arrayIcons[i].color}"></i>
 	<h3>${arrayIcons[i].name}</h3>
 	`;
 	containerDOM.appendChild(innerContainerDom);
