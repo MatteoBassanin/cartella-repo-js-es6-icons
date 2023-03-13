@@ -125,6 +125,8 @@ for(let i = 0; i < arrayIcons.length; i++){
 	<h3>${arrayIcons[i].name}</h3>
 	`;
 	containerDOM.appendChild(innerContainerDom);
+	innerContainerDom.classList.add("box");
+
 };
 
 
