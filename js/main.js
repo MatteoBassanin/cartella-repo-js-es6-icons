@@ -115,55 +115,41 @@ const arrayIcons = [
 
 
 let containerDOM = document.getElementById("container");
-const selectDom = document.getElementById("display_type");
-
-let animal = arrayIcons.filter(kind =>{ 
-	return (kind.type == "animal") ? true : false });
+let selectDom = document.getElementById("display_type");
 
 
-const veggy = arrayIcons.filter(kind =>{
-	return (kind.type == "vegetable") ? true : false });
+generateBox(arrayIcons,containerDOM);
 
+function generateBox (array,container ){
 
+	container.innerHTML = "";
 
-const user = arrayIcons.filter(kind =>{
-	return (kind.type == "user") ? true : false });
-
-
-generateBox(arrayIcons);
-
+	array.forEach((kind) =>{
+		container.innerHTML +=`<div class="box">
+		<i class="fa-solid fa-${kind.name} "style="color:${kind.color}"></i>
+		<h3>${kind.name}</h3>
+		</div>
+		`;
+		
+	});
+}
 
 selectDom.addEventListener("change",
 function(){
 	
-	if(selectDom.value == "all"){
-		generateBox(arrayIcons)
-	}
-	if (selectDom.value == "vegetable"){
-		generateBox(veggy)
-	}
-	if (selectDom.value == "animal"){
-		generateBox(animal)
-	}
-	if (selectDom.value == "user"){
-		generateBox(user)
+	let selected = this.value;
+
+	if( selected == "") {
+		generateBox(arrayIcons, containerDOM);
+	}else{
+		const filtered = arrayIcons.filter(kind =>{
+			return (selected == kind.type) ? true:false
+		}
+			);
+			generateBox(filtered ,containerDOM);
 	}
 
 });
-
-
-function generateBox (array){
-	containerDOM.innerHTML = "";
-	array.forEach((kind) =>{
-		containerDOM.innerHTML +=`<div class="box">
-		<i class="fa-solid fa-${kind.name} "style="color:${kind.color}"></i>
-		<h3>${kind.name}</h3></div>
-		`;
-		
-	});
-
-}
-
 
 
 
